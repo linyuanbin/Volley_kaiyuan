@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap map=new HashMap();
-                map.put("apikey ","af02a3e0e93ef6cbb85eada01a1c40ae");
+                map.put("apikey ","你自己的apikay");
                 return map;
             }
         };
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap map=new HashMap();
-                map.put("apikey ","af02a3e0e93ef6cbb85eada01a1c40ae");
+                map.put("apikey ","你自己的apikay");
                 return map;
             }
         };

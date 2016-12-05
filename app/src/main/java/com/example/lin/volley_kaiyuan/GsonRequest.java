@@ -21,9 +21,9 @@ import java.io.UnsupportedEncodingException;
 Gson jar包需要导入，这里我没有导入所有报错
 下载地址：http://download.csdn.net/detail/zeng_zhi_1991/9452466
  */
-public class GsonRequest<T> extends Request<T>{
+public class GsonRequest<T> { //extends Request<T>
 
-    private Response.Listener<T> listener;
+/*    private Response.Listener<T> listener;
     private Gson gson;
     private Class<T> tClass;
 
@@ -41,7 +41,7 @@ public class GsonRequest<T> extends Request<T>{
     @Override
     protected Response<T> parseNetworkResponse(NetworkResponse networkResponse) {
         try {
-                    String jsonString = new String(networkResponse.data, HttpHeaderParser.parseCharset(networkResponse.headers))
+                    String jsonString = new String(networkResponse.data, HttpHeaderParser.parseCharset(networkResponse.headers));
                     return Response.success(gson.fromJson(jsonString,tClass),HttpHeaderParser.parseCacheHeaders(networkResponse));
         }catch (UnsupportedEncodingException e){
             return Response.error(new ParseError(e));
@@ -52,5 +52,5 @@ public class GsonRequest<T> extends Request<T>{
     @Override
     protected void deliverResponse(T t) {
 
-    }
+    }*/
 }

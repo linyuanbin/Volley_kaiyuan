@@ -28,7 +28,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     private TextView textView,textView2;
-    private ImageView imageView;
+    private ImageView imageView1,imageView2;
     private NetworkImageView networkImageView;
     private String url="http://apis.baidu.com/heweather/weather/free";
     private String arg="city=beijing";
@@ -42,9 +42,12 @@ public class MainActivity extends AppCompatActivity {
 
         textView= (TextView) findViewById(R.id.text);
         textView2= (TextView) findViewById(R.id.text2);
-        imageView= (ImageView) findViewById(R.id.imageView);
+        imageView1= (ImageView) findViewById(R.id.imageView);
+        imageView2= (ImageView) findViewById(R.id.image);
         networkImageView= (NetworkImageView) findViewById(R.id.networkImage);
+
         RequestQueue requestQueue= Volley.newRequestQueue(this);
+
         //StringRequest stringRequest=new StringRequest(ur, new Response.Listener<String>() {  //不使用getParams传入参数时这样就行
         StringRequest stringRequest=new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {//Request.Method.POST请求方式
             @Override
@@ -71,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 return map;
             }
         };
+
 
         //JsonRequest的使用
         /*使用JsonObjectRequest或继承自JsonObjectRequest类的对象提交post请求时，
@@ -99,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
          ImageRequest imageRequest=new ImageRequest("https://p.ssl.qhimg.com/t01df31145427f5ea2f.jpg", new Response.Listener<Bitmap>() {
             @Override
             public void onResponse(Bitmap bitmap) {
-                imageView.setImageBitmap(bitmap);
+                imageView1.setImageBitmap(bitmap);
             }
         }, 0, 0, Bitmap.Config.ARGB_8888, new Response.ErrorListener() {
             @Override
@@ -121,14 +125,18 @@ public class MainActivity extends AppCompatActivity {
             public Bitmap getBitmap(String s) {
                 return null;
             }
-
             @Override
             public void putBitmap(String s, Bitmap bitmap) {
-
             }
         });
         networkImageView.setDefaultImageResId(R.mipmap.ic_launcher);
         networkImageView.setErrorImageResId(R.mipmap.ic_launcher);//加载失败显示图片
         networkImageView.setImageUrl("https://p.ssl.qhimg.com/t01df31145427f5ea2f.jpg",imageLoader);
+
+
+        //使用ImageLoader
+        ImageLoader imageLoader1=new ImageLoader(requestQueue, new BitmapCache()); //BitmapCache是自定义的算法类
+        ImageLoader.ImageListener listener=ImageLoader.getImageListener(imageView2,R.mipmap.ic_launcher,R.mipmap.ic_launcher);
+        imageLoader1.get("https://p.ssl.qhimg.com/t01df31145427f5ea2f.jpg",listener);
     }
 }
